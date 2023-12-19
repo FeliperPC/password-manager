@@ -1,13 +1,13 @@
 import './App.css';
 import Form from './Form';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
-    <>
-     <h1>Gerenciador de Senhas</h1>
-     
+    <div className='bg-dark text-light App'>
+     <h1 className='title'>Gerenciador de Senhas</h1>
      <Form/>
-    </>
+    </div>
   )
 }
 

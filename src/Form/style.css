@@ -1,0 +1,16 @@
+@media screen and (max-width:460px) {
+  .form{
+    background-color: #52525B;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  .form-control{
+    border :none;
+    color :#FFF;
+  }
+  .btn-group{
+    display: flex;
+    margin-top: 10px;
+    font-size: 10px;
+  }
+}
