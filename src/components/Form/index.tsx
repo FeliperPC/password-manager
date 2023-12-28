@@ -1,32 +1,48 @@
 import { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.css'
+import PasswordList from "../PasswordList";
+import { formType } from "../../type";
 
 function Form() {
+  const [passwordList, setPassowordList]= useState<formType[]>([]);
   const [enableForm,setEnableForm] = useState(false);
-
   const [nameAlert,setNameAlert] = useState(false);
   const [loginAlert,setLoginAlert] = useState(false);
   const [urlAlert,setUrlAlert] = useState(false);
   const [passWordAlert,setPasswordAlert] = useState(false);
 
-  const [formInfo,setFormInfo] = useState<Record<string, string>>({})
+  const [formInfo,setFormInfo] = useState <formType>({
+    serviceName:'',
+    login : '',
+    password :'',
+    url: '',
+  })
   const [enableBtn,setEnableBtn] = useState(true);
   
+  function addNewCard(){
+    setPassowordList([
+      ...passwordList,
+      formInfo
+    ])
+  }
+
   function checkEnableBtn() {
-    const formCopy = formInfo
-    if(Object.values(formCopy).length>3 && !nameAlert && !loginAlert 
-    && !passWordAlert && !urlAlert){
+    const formCopy = formInfo;
+    const validations = [nameAlert,loginAlert,urlAlert,passWordAlert];
+    if(validations.every((value)=>value === false)
+    &&Object.values(formCopy).length===4){
       setEnableBtn(false);
     } else {
       setEnableBtn(true);
     }
   }
 
-  function btnNewPassowrdHandler() {
-    setEnableForm(true);
+  function btnNewPassowrdHandler(value:boolean) {
+    setEnableForm(value);
   }
   function inputPasswordHandler(value : string){
+    checkEnableBtn();
     const hasNumberLetters = /[a-zA-Z]+.*[0-9]+|[0-9]+.*[a-zA-Z]+/;
     const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]+/;
     if(value.length < 8 || value.length > 16 || !hasNumberLetters.test(value)
@@ -38,6 +54,7 @@ function Form() {
     }
   }
   function inputNameAndLoginHandler(event : React.FocusEvent<HTMLInputElement>){
+    checkEnableBtn();
     if(event.target.value.length <= 0){
       if(event.target.name === 'serviceName') setNameAlert(true)
       if(event.target.name === 'login') setLoginAlert(true)
@@ -54,10 +71,9 @@ function Form() {
       ...formInfo,
       [name]:value,
     })
-    checkEnableBtn();
   }
   return (
-    <div>
+    <div className="main-container">
       {enableForm ? 
       <form className="form">
         <label className="form-label">Nome do Serviço :</label>
@@ -110,20 +126,32 @@ function Form() {
             disabled={enableBtn}
             type="button" 
             className="btn btn-success"
+            onClick={addNewCard}
             >Cadastrar
           </button>
           <button 
-            onClick={btnNewPassowrdHandler} 
+            onClick={()=>btnNewPassowrdHandler(false)} 
             type="button" 
             className="btn btn-danger"
             >Cancelar
           </button>
         </div>
-      </form> 
+      </form>
       : 
-      <button type="button" className="btn btn-primary" onClick={btnNewPassowrdHandler}>
+      <button type="button" className="btn btn-primary" onClick={()=>btnNewPassowrdHandler(true)}>
         Cadastrar nova senha
       </button>}  
+      <div>
+      {!passwordList.length ? 
+        <p style={{marginTop:'10px'}}>Nenhuma Senha Cadastrada</p> 
+        :
+        <PasswordList 
+          login={formInfo.login} 
+          password={formInfo.password}
+          url ={formInfo.url}
+        />
+      }
+      </div>
     </div>
   );
 }

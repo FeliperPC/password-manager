@@ -1,5 +1,5 @@
 import './App.css';
-import Form from './Form';
+import Form from './components/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {

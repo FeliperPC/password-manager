@@ -13,4 +13,9 @@
     margin-top: 10px;
     font-size: 10px;
   }
+  .main-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
