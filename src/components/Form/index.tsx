@@ -11,6 +11,7 @@ function Form() {
   const [loginAlert,setLoginAlert] = useState(false);
   const [urlAlert,setUrlAlert] = useState(false);
   const [passWordAlert,setPasswordAlert] = useState(false);
+  const [showPassword,setShowPassword] = useState(false);
 
   const [formInfo,setFormInfo] = useState <formType>({
     serviceName:'',
@@ -20,11 +21,15 @@ function Form() {
   })
   const [enableBtn,setEnableBtn] = useState(true);
   
+  function onRemoveItem(value:string){
+    const newList = passwordList.filter((item)=>item.serviceName!=value);
+    setPassowordList(newList);
+  }
+
   function addNewCard(){
-    setPassowordList([
-      ...passwordList,
-      formInfo
-    ])
+    btnNewPassowrdHandler(false);
+    const list = [...passwordList,formInfo];
+    setPassowordList(list);
   }
 
   function checkEnableBtn() {
@@ -41,6 +46,7 @@ function Form() {
   function btnNewPassowrdHandler(value:boolean) {
     setEnableForm(value);
   }
+
   function inputPasswordHandler(value : string){
     checkEnableBtn();
     const hasNumberLetters = /[a-zA-Z]+.*[0-9]+|[0-9]+.*[a-zA-Z]+/;
@@ -67,11 +73,16 @@ function Form() {
   }
   function inputsHandler(event : React.ChangeEvent<HTMLInputElement>){
     const {name,value} = event.target;
-    setFormInfo({
-      ...formInfo,
+    setFormInfo((prevState)=>({
+      ...prevState,
       [name]:value,
-    })
+    }))
   }
+  function changeVisibilityPassword(checkValue : boolean){
+    const value = checkValue;
+    setShowPassword(value);
+  }
+  
   return (
     <div className="main-container">
       {enableForm ? 
@@ -145,11 +156,24 @@ function Form() {
       {!passwordList.length ? 
         <p style={{marginTop:'10px'}}>Nenhuma Senha Cadastrada</p> 
         :
-        <PasswordList 
-          login={formInfo.login} 
-          password={formInfo.password}
-          url ={formInfo.url}
-        />
+        <div className="password-container">
+          <div className="password-info">
+          <p>Senhas Cadastradas</p>
+          <label className="show-password">
+            Mostrar senhas
+            <input 
+              type="checkbox" 
+              name="showPassowrd" 
+              onChange={({target})=>changeVisibilityPassword(target.checked)}  
+            />
+          </label>
+          </div> 
+          <PasswordList 
+          list={passwordList} 
+          onRemoveItem = {onRemoveItem}
+          showPassword = {showPassword}
+          />
+        </div>
       }
       </div>
     </div>

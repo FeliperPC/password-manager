@@ -1,5 +1,5 @@
 export type formType = {
-  serviceName? : string,
+  serviceName : string,
   login : string,
   password : string,
   url : string,

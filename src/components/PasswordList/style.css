@@ -1,0 +1,20 @@
+@media screen and (max-width:460px) {
+  .card-container{
+    background-color: #52525B;
+    padding: 10px 15px;
+    border-radius: 10px;
+    margin: 5px;
+  }
+  .btn-remove{
+    display: flex;
+    justify-content: flex-end;
+  }
+  .btn-remove > button{
+    font-size: 10px;
+    margin: 0;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: rgb(39,39,42);
+    color: white;
+  }
+}

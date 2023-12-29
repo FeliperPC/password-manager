@@ -18,4 +18,29 @@
     flex-direction: column;
     align-items: center;
   }
+  .password-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .show-password{
+    display: flex;
+    font-size: 10px;
+    background-color: #1a2124;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  .show-password > input{
+    width: 10px;
+    margin-left: 2px;
+  }
+  .password-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px 0px;
+  }
+  .password-info > p{
+    margin-bottom: 0px;
+  }
 }
