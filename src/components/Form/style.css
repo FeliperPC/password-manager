@@ -13,16 +13,17 @@
     margin-top: 10px;
     font-size: 10px;
   }
-  .main-container{
+  .main-container,.password-container{
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100vw;
   }
   .password-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    padding: 0 30px;
+    margin: 0 10px;
   }
+  
   .show-password{
     display: flex;
     font-size: 10px;
@@ -30,7 +31,7 @@
     padding: 5px;
     border-radius: 5px;
   }
-  .show-password > input{
+  .show-password > input,.show-password-form > label >input{
     width: 10px;
     margin-left: 2px;
   }
@@ -42,5 +43,13 @@
   }
   .password-info > p{
     margin-bottom: 0px;
+  }
+  .show-password-form{
+    display: flex;
+    font-size: 10px;
+    justify-content: flex-end;
+  }
+  .show-password-form > label{
+    display: flex;
   }
 }

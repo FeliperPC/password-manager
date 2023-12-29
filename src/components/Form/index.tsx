@@ -3,8 +3,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.css'
 import PasswordList from "../PasswordList";
 import { formType } from "../../type";
+import Swal from "sweetalert2";
 
 function Form() {
+  const [passwordVisibilityForm,setPasswordVisibilityForm] = useState('password');
   const [passwordList, setPassowordList]= useState<formType[]>([]);
   const [enableForm,setEnableForm] = useState(false);
   const [nameAlert,setNameAlert] = useState(false);
@@ -30,8 +32,24 @@ function Form() {
     btnNewPassowrdHandler(false);
     const list = [...passwordList,formInfo];
     setPassowordList(list);
+    Swal.fire({
+      title: "Senha cadastrada com sucesso !",
+      icon: "success",
+      width: '70%',
+      heightAuto:true,
+      showConfirmButton:false,
+      timer:3000
+    });
   }
 
+  function changeVisibilityPasswordForm(value : boolean){
+    if(value){
+      setPasswordVisibilityForm('text');
+    } else{
+      setPasswordVisibilityForm('password'); 
+    }
+    
+  }
   function checkEnableBtn() {
     const formCopy = formInfo;
     const validations = [nameAlert,loginAlert,urlAlert,passWordAlert];
@@ -109,12 +127,22 @@ function Form() {
           {loginAlert ? <p>Login é obrigatório</p> : ''}
           <label className="form-label">Senha :</label>
           <input 
-            type="password"
+            type={passwordVisibilityForm}
             className="form-control bg-dark text-light border-light" 
             onBlur={({target})=>inputPasswordHandler(target.value)}
             onChange={(event)=>inputsHandler(event)}
             name = 'password' 
           />
+          <div className="show-password-form">
+            <label>
+              Mostrar senha
+              <input 
+                type="checkbox" 
+                name="showPassowrd" 
+                onChange={({target})=>changeVisibilityPasswordForm(target.checked)}  
+              />
+            </label>
+          </div>
          {passWordAlert ? 
           <div className="passoword-errors">
             <p>Possuir 8 ou mais caracteres</p>
@@ -149,7 +177,11 @@ function Form() {
         </div>
       </form>
       : 
-      <button type="button" className="btn btn-primary" onClick={()=>btnNewPassowrdHandler(true)}>
+      <button 
+        type="button" 
+        className="btn btn-primary" 
+        onClick={()=>btnNewPassowrdHandler(true)}
+      >
         Cadastrar nova senha
       </button>}  
       <div>

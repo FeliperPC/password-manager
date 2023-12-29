@@ -4,6 +4,7 @@
     padding: 10px 15px;
     border-radius: 10px;
     margin: 5px;
+    width: 100%;
   }
   .btn-remove{
     display: flex;
