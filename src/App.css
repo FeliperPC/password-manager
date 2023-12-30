@@ -4,19 +4,20 @@
   padding: 0;
   border: 0;
 }
+.App{
+  font-family: 'Afacad', sans-serif;
+  background-color: rgb(39,39,42);
+  height: 100vh;
+  color: #FFF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
 @media screen and (max-width:460px){
   .App{
-    font-family: 'Afacad', sans-serif;
-    background-color: rgb(39,39,42);
-    height: 100vh;
-    color: #FFF;
     font-size: 12px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  .title{
-    margin-top: 10px;
   }
 }

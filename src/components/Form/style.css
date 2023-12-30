@@ -1,55 +1,75 @@
+.form{
+  background-color: #52525B;
+  padding: 20px;
+  border-radius: 10px;
+  width: 20%;
+}
+.form-control{
+  border :none;
+  color :#FFF;
+}
+.main-container,.password-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 95vw;
+}
+.btn-group{
+  display: flex;
+  margin-top: 10px;
+  font-size: 18px;
+}
+.password-container{
+  padding: 0 30px;
+  margin: 0 10px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+show-password{
+  display: flex;
+  font-size: 18px;
+  background-color: #1a2124;
+  padding: 5px;
+  border-radius: 5px;
+}
+.password-info{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 5px 0px;
+}
+.password-info > p{
+  margin-bottom: 0px;
+}
+.show-password-form{
+  display: flex;
+  font-size: 18px;
+  justify-content: flex-end;
+}
+.show-password-form > label{
+  display: flex;
+}
+.show-password > input,.show-password-form > label >input{
+  width: 10px;
+  margin-left: 2px;
+}
+
 @media screen and (max-width:460px) {
   .form{
-    background-color: #52525B;
-    padding: 20px;
-    border-radius: 10px;
-  }
-  .form-control{
-    border :none;
-    color :#FFF;
+    width: 70%;
   }
   .btn-group{
-    display: flex;
-    margin-top: 10px;
     font-size: 10px;
   }
-  .main-container,.password-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100vw;
-  }
-  .password-container{
-    padding: 0 30px;
-    margin: 0 10px;
-  }
-  
   .show-password{
-    display: flex;
     font-size: 10px;
-    background-color: #1a2124;
-    padding: 5px;
-    border-radius: 5px;
-  }
-  .show-password > input,.show-password-form > label >input{
-    width: 10px;
-    margin-left: 2px;
-  }
-  .password-info{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 5px 0px;
-  }
-  .password-info > p{
-    margin-bottom: 0px;
   }
   .show-password-form{
-    display: flex;
     font-size: 10px;
-    justify-content: flex-end;
   }
-  .show-password-form > label{
+  .password-container{
     display: flex;
+    flex-direction: column;
   }
 }

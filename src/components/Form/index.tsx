@@ -63,6 +63,10 @@ function Form() {
 
   function btnNewPassowrdHandler(value:boolean) {
     setEnableForm(value);
+    setNameAlert(false);
+    setPasswordAlert(false);
+    setLoginAlert(false);
+    setUrlAlert(false);
   }
 
   function inputPasswordHandler(value : string){
@@ -188,7 +192,7 @@ function Form() {
       {!passwordList.length ? 
         <p style={{marginTop:'10px'}}>Nenhuma Senha Cadastrada</p> 
         :
-        <div className="password-container">
+        <div>
           <div className="password-info">
           <p>Senhas Cadastradas</p>
           <label className="show-password">
@@ -200,11 +204,13 @@ function Form() {
             />
           </label>
           </div> 
-          <PasswordList 
-          list={passwordList} 
-          onRemoveItem = {onRemoveItem}
-          showPassword = {showPassword}
-          />
+          <div className="password-container">
+            <PasswordList 
+            list={passwordList} 
+            onRemoveItem = {onRemoveItem}
+            showPassword = {showPassword}
+            />
+          </div>
         </div>
       }
       </div>
